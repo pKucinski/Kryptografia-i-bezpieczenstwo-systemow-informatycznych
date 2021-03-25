@@ -59,8 +59,10 @@ class Afiniczny:
         decrypto.close()
 
     def kryptoanaliza(self):
+        None
 
     def lamanie_szyfru(self):
+        None
 
 class Cezar():
         def __init__(self, text):
