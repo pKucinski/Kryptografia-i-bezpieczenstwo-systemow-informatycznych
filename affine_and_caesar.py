@@ -1,4 +1,14 @@
 import string
+import sys
+
+abc = string.ascii_lowercase
+one_time_pad = list(abc)
+
+help = """help:
+-p prepare
+-e encrypt
+-k cryptanalysis 
+"""
 
 
 class Afiniczny:
@@ -163,37 +173,17 @@ def get_key():
 
 
 if __name__ == '__main__':
-    text = input()
-    if "-c" == text[-5:-3]:
-        cezar = szyfr_cezara.Cezar(text)
-        if "-e" == text[-2:]:
-            key = get_key()
-            cezar.szyfrowanie(key)
-        elif "-d" == text[-2:]:
-            key = get_key()
-            cezar.odszyfrowywanie(key)
-        elif "-j" == text[-2:]:
-            cezar.kryptoanaliza()
-        elif "-k" == text[-2:]:
-            cezar.lamanie_szyfru()
-        else:
-            print("Nieprawidłowa opcja")
+    options = ["-p", "-e", "-k"]
+    if len(sys.argv) == 1 or sys.argv[1] not in options:
+        print(help)
+        exit(0)
 
-    elif "-a" in text:
-        afiniczny = szyfr_afiniczny.Afiniczny(text)
-        if "-e" in text:
-            a = get_key()
-            b = input()
-            b = int(b)
-            afiniczny.szyfrowanie(a, b)
-        elif "-d" in text:
-            a = get_key()
-            b = input()
-            b = int(b)
-            afiniczny.odszyfrowywanie(a, b)
-        elif "-j" in text:
-            afiniczny.kryptoanaliza()
-        elif "-k" in text:
-            afiniczny.lamanie_szyfru()
-        else:
-            print("Nieprawidłowa opcja")
+    key = input("Key: ")
+    msg = input("Message: ")
+
+    if sys.argv[1] == options[0]:
+        None
+    elif sys.argv[1] == options[1]:
+        Cezar.
+    elif sys.argv[1] == options[2]:
+        print(decrypt(msg, key))

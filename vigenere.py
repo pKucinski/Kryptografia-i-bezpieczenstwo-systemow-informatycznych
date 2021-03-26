@@ -29,30 +29,19 @@ def originalText(cipher_text, key):
     return ("".join(orig_text))
 
 
-if __name__ == "__main__":
-    string = input()
-    command = string[-2:]
-    string = string[:-3]
-    keyword = string[:3]
-    key = generateKey(string, "GEEKS")
 
-    cipher_text = cipherText(string, key)
+if __name__ == '__main__':
+    options = ["-p", "-e", "-k"]
+    if sys.argv[1] not in options:
+        print(help)
+        exit(0)
 
-    if command == "-p":
-        f = open("plain.txt", "w")
-        f.write(string)
-        f.close()
+    key = input("Key: ")
+    msg = input("Message: ")
 
-    elif command == "-e":
-        f = open("crypto.txt", "w")
-        f.write(cipher_text)
-        f.close()
-        f = open("key.txt", "w")
-        f.write(key)
-        f.close()
-
-    elif command == "-d":
-        key = input()
-        f = open("decrypto.txt", "w")
-        f.write(originalText(string, "GEEKSGEEK"))
-        f.close()
+    if sys.argv[1] == options[0]:
+        None
+    elif sys.argv[1] == options[1]:
+        print(encrypt(msg, key))
+    elif sys.argv[1] == options[2]:
+        print(decrypt(msg, key))
